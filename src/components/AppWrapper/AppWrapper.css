@@ -1,0 +1,4 @@
+.AppWrapper{
+    display: grid;
+    grid-template-columns: 20vw auto;
+}

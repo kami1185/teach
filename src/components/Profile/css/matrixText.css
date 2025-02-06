@@ -1,0 +1,46 @@
+.matrix-container {
+    /* background-color: #000; */
+    padding: 20px;
+    /* border: 1px solid #0f0; */
+  }
+  
+  .matrix-text {
+    font-family: 'Courier New', monospace;
+    color: #00ff88;
+    font-size: 1.5em;
+    text-shadow: 0 0 5px #00ff88;
+    position: relative;
+    white-space: nowrap;
+    
+  }
+  
+  .cursor {
+    opacity: 0;
+    animation: cursor-blink 1s infinite;
+    color: #00ff88;
+  }
+  
+  .cursor.visible {
+    opacity: 1;
+  }
+  
+  @keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  /* Efecto de brillo neón */
+  .matrix-text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      transparent 60%,
+      rgba(0, 255, 0, 0.1) 85%,
+      rgba(0, 255, 0, 0.3) 100%
+    );
+    pointer-events: none;
+  }

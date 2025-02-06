@@ -1,0 +1,90 @@
+:root{
+    --border-radius: 8px;
+    --background-phase: #4f4d4d;
+}
+
+.lifecycle{
+    display: block;
+}
+
+.border{
+    border-radius: var(--border-radius);
+}
+
+.show{
+    display: block;
+}
+
+.hide{
+    display: none;
+}
+
+.mountingComponent > div {
+    padding: 5px 15px;
+}
+.mountingComponent > div > h3{
+    margin: 0px;
+}
+
+.componentPhase{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mountingComponent{
+    background: var(--background-phase);
+    padding: 10px 25px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .constructor {
+        background: #58a263;
+    }
+
+    .getDerivedStateFromProps{
+        background: #58a263;
+    }
+
+    .render{
+        background: #58a263;
+    }
+
+    .componentDidMount{
+        background: #58a263;
+    }
+}
+
+.updatingComponent{
+    background: var(--background-phase);
+    padding: 10px 25px;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .getDerivedStateFromProps{
+        background: #58a263;
+    }
+
+    .shouldComponentUpdate{
+        background: #388acd;
+    }
+
+    .render{
+        background: #58a263;
+    }
+
+    .componentDidUpdate{
+        background: #388acd;
+    }
+
+}
+
+@media (min-width:768px) {
+    .lifecycle {
+        display: grid;
+        grid-template-columns: 30% 1fr;
+        gap: 10px;
+    }
+}

@@ -1,0 +1,21 @@
+:root{
+    --navbar-width: 100%;
+    --navbar-height: 4rem;
+    --navbar-padding-vertical: 1rem;
+    --navbar-padding-horizontal: 1rem;
+    --navbar-z-index: 99;
+}
+
+.navbar{
+    height: var(--navbar-height);
+    padding: var(--navbar-padding-vertical) var(--navbar-padding-horizontal);
+    width: var( --navbar-width);
+    flex-direction: row;
+    
+}
+
+.navbar-position{
+    top: 0;
+    position: sticky;
+    z-index: var(--navbar-z-index);
+}
