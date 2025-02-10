@@ -28,7 +28,7 @@ const MatrixText  = ({text}) => {
     }, [currentIndex, text.length]);
   
     return (
-      <div className="matrix-container">
+      <div className="matrix-text-container">
         <div className="matrix-text">
           {displayText}
           <span className={`cursor ${blink ? 'visible' : ''}`}>█</span>

@@ -4,6 +4,7 @@ import { ComponentNotFound } from '../components'
 import { componentsJavascript } from '../data/components.javascript'
 import { componentsReact } from '../data/components.react'
 import { pagesJest } from '../data/pages.jest'
+import MenuCourses from '../components/MenuCourses/MenuCourses'
 
 const RoutesApp = () => {
 
@@ -159,6 +160,8 @@ const RoutesApp = () => {
   return (
     <Routes>
         <Route path="/" element={<Home/>} />
+
+        <Route path="/programa-ucc" element={<MenuCourses/>} />
 
         <Route path="/javascript" element={null}>
           {componentsJavascript.menu.map((route) => (
