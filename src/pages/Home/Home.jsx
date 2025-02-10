@@ -1,77 +1,12 @@
+import { useEffect, useRef, useState } from 'react';
 import '../css/stylesCode.scss'
 import { Link } from 'react-router-dom'
 import react from '../../assets/react/react.svg';
 import javascript from '../../assets/javascript/javascript.svg';
 import git from '../../assets/git/git.svg';
 import jest from '../../assets/jest/jest.svg';
-import { useEffect, useRef } from 'react';
 import MatrixText from '../../components/Profile/MatrixText ';
-
-
-const ParticleBackground = () => {
-    const canvasRef = useRef(null);
-  
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-    
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-  
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 1.8;
-                this.speedX = Math.random() * 3 - 1.5;
-                this.speedY = Math.random() * 3 - 1.5;
-                this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
-            }
-    
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-        
-                if (this.x > canvas.width) this.x = 0;
-                if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0;
-                if (this.y < 0) this.y = canvas.height;
-            }
-    
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-  
-        const init = () => {
-            resizeCanvas();
-            particles = Array.from({ length: 100 }, () => new Particle());
-        };
-    
-        const animate = () => {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-            particle.update();
-            particle.draw();
-            });
-            requestAnimationFrame(animate);
-        };
-  
-        init();
-        animate();
-        window.addEventListener('resize', resizeCanvas);
-    
-        return () => window.removeEventListener('resize', resizeCanvas);
-    }, []);
-  
-    return <canvas ref={canvasRef} className="particle-canvas" />;
-};
+import MenuCourses from '../../components/MenuCourses/MenuCourses';
 
 
 const HeroSection = () => (
@@ -90,8 +25,8 @@ const HeroSection = () => (
     </section>
 );
 
-const ProfileSection = ({ref}) => (
-    <section ref={ref} className="section">
+const ProfileSection = () => (
+    <section className="section">
         <h2 className="section__title">Perfil</h2>
         <div className="profile-grid">
             <div className="profile-card">
@@ -114,8 +49,8 @@ const ProfileSection = ({ref}) => (
     </section>
 );
 
-const SkillsSection = ({ref}) => (
-    <section ref={ref} className="section">
+const SkillsSection = () => (
+    <section className="section">
       <h2 className="section__title">Habilidades</h2>
       <div className="education-timeline">
         <div className="education-item">
@@ -136,8 +71,8 @@ const SkillsSection = ({ref}) => (
     </section>
 );
 
-const EducationSection = ({ref}) => (
-    <section ref={ref} className="section">
+const EducationSection = () => (
+    <section className="section">
       <h2 className="section__title">Educación</h2>
       <div className="education-timeline">
         <div className="education-item">
@@ -154,16 +89,21 @@ const EducationSection = ({ref}) => (
     </section>
 );
 
-const MatrixButton = () => {
+const MatrixButton = ({handleShowHome}) => {
     return (
-        <button className="matrix-button">
-            [Entrar]
-        </button>
+
+        <Link to="/programa-ucc">
+            <button className="matrix-button" onClick={handleShowHome}>
+                [Entrar]
+            </button>
+        </Link>
+        
     );
 };
 
 const Home = () => {
 
+    const [showHome, setShowHome] = useState(false)
     const sectionRefs = useRef([]);
 
 
@@ -183,49 +123,56 @@ const Home = () => {
     
         return () => observer.disconnect();
     }, []);
+
+    const handleShowHome = () => {
+        setShowHome(!showHome);
+    }
     
 
     return (
         <>
-            <div className="container-menu">
-                <ParticleBackground />
-                <HeroSection/>
-                <div className="container">
-                    <ProfileSection ref={(el) => (sectionRefs.current[0] = el)} />
-                    <SkillsSection ref={(el) => (sectionRefs.current[1] = el)} />    
-                    <EducationSection ref={(el) => (sectionRefs.current[2] = el)} />
-                </div>
-                
-                
-                {/* <div className="container-box">
-                
-                    <Link to="/javascript">
-                        <div className="menu-box">
-                            <img src={javascript} alt="react-logo" />
+            {
+                showHome ? 
+                    // <div className="container-box">                
+                    //     <Link to="/javascript">
+                    //         <div className="menu-box">
+                    //             <img src={javascript} alt="react-logo" />
+                    //         </div>
+                    //     </Link>
+                    //     <Link to="/react">
+                    //         <div className="menu-box">
+                    //             <img src={react} alt="react-logo" />
+                    //         </div>
+                    //     </Link>
+                    //     <Link to="/jest/introduction">
+                    //         <div className="menu-box">
+                    //             <img src={jest} alt="jest-logo" />
+                    //         </div>
+                    //     </Link>
+                    //     <Link to="/git">
+                    //         <div className="menu-box">
+                    //             <img src={git} alt="git-logo" />
+                    //         </div>
+                    //     </Link>
+                    // </div> 
+                    <MenuCourses/>
+                :
+                    <>
+                        <div className="container-profile">
+                            {/* <ParticleBackground /> */}
+                            <HeroSection/>
+                            <div className="container">
+                                <ProfileSection  />
+                                <SkillsSection  />    
+                                <EducationSection />
+                            </div>
                         </div>
-                    </Link>
-                    <Link to="/react">
-                        <div className="menu-box">
-                            <img src={react} alt="react-logo" />
+                        <div className="container-button-enter">
+                            <MatrixButton handleShowHome={handleShowHome}/>
                         </div>
-                    </Link>
-                    <Link to="/jest/introduction">
-                        <div className="menu-box">
-                            <img src={jest} alt="jest-logo" />
-                        </div>
-                    </Link>
-                    <Link to="/git">
-                        <div className="menu-box">
-                            <img src={git} alt="git-logo" />
-                        </div>
-                    </Link>
+                    </>
+            }
 
-                </div> */}
-
-            </div>
-            <div className="container-button-enter">
-                <MatrixButton />
-            </div>
         </>
     )
 }
