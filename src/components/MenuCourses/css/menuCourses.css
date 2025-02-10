@@ -50,7 +50,7 @@
     transition: all 0.3s ease;
     overflow: hidden;
     cursor: pointer;
-    height: 200px;
+    height: 170px;
   }
   
   .matrix-card:hover {
@@ -146,6 +146,7 @@
     .matrix-container {
       grid-template-columns: 1fr;
       padding: 1rem;
+      overflow: scroll;
     }
     
     .matrix-card {
