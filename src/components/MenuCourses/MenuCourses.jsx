@@ -5,11 +5,11 @@ import './css/menuCourses.css'
 const MenuCourses = () => {
 
     const cards = [
-        { color: '#0f0', title: 'SISTEMAS DISTRIBUIDOS', content: '' },
+        { color: '#149314', title: 'SISTEMAS DISTRIBUIDOS', content: '' },
         { color: '#daba0b', title: 'PROGRAMACION ORIENTADA A LA WEB', content: '' },
         { color: '#00e3ff', title: 'SISTEMAS OPERATIVOS', content: '' },
         { color: '#df4cdff5', title: 'CLOUDING COMPUTING', content: '' },
-        { color: '#f00', title: 'ASPECTOS GENERALES DEL MEDIO AMBIENTE', content: '' },
+        { color: '#d33c3c', title: 'ASPECTOS GENERALES DEL MEDIO AMBIENTE', content: '' },
     ];
 
     return (
